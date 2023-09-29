@@ -1,0 +1,12 @@
+__pycache__
+*.egg-info
+.vscode/*
+
+# pycharm
+.idea/*
+
+# emacs stuff
+*~
+*#
+
+*/junk/*
