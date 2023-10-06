@@ -4,15 +4,27 @@ import pinoutOverview as Overview
 import dx_functions
 
 
-class DxPackageData(Overview.PackageData):
-    def __init__(self, package_name, pin_spacing, appdata):
+class DxPackage(Overview.Package):
+    def __init__(self, package_name, appdata):
         """
 
         Args:
-            package_name (str): Name of the package shape: 'qfp', 'qfn', 'sop'
+            variant_package:
+
+        Returns:
+            package_name (str): Name of the variant package such as 'tqfp32', 'vqfn44', 'soic16'
             pin_spacing (int): space between adjacent pins in pixels.
             appdata (dict): dictionary of user data to include in package
         """
+        shape, pin_count = self.parse_variant_package(package_name)
+        super().__init__(shape, pin_count)
+
+        self.text1 = appdata['text1']
+        self.text2 = appdata['text2']
+
+        return
+
+    def parse_variant_package(self, package_name):
         package_map = dict(spdip='sop', soic='sop', ssop='sop', tqfp='qfp', vqfn='qfn')
 
         # shape, sep, count = package_name.partition('-')
@@ -27,13 +39,7 @@ class DxPackageData(Overview.PackageData):
             print('unrecognized package shape: {}'.format(shape))
             raise
 
-        super().__init__(shape, pin_count, pin_spacing)
-
-        self.text1 = appdata['text1']
-        self.text2 = appdata['text2']
-
-        return
-
+        return shape, pin_count
 
 class DxPinmap(Overview.Pinmap):
     def __init__(self, pinmap):
@@ -84,15 +90,16 @@ if __name__ == '__main__':
     # svg coordinates: +x to the right, +y to the bottom
     x_direction = -1  # +1 right, -1 left
     y_direction = 1   # +1 down
-    x = -600 * x_direction
-    y = -400 * y_direction
+    x = -000 * x_direction
+    y = -000 * y_direction
     
     dw_page.append(dw.Line(x_max,y, -x_max,y, stroke='black'))
     dw_page.append(dw.Line(x,y_max, x,-y_max, stroke='red'))
 
     ###
 
-    atdf_path = os.path.expanduser('~/dev/svg/avr-atpack/Microchip.AVR-Dx_DFP.2.3.272/atdf/AVR32DB32.atdf')
+    # atdf_path = os.path.expanduser('~/dev/svg/avr-atpack/Microchip.AVR-Dx_DFP.2.3.272/atdf/AVR32DB32.atdf')
+    atdf_path = os.path.expanduser('~/dev/svg/avr-atpack/Microchip.AVR-Dx_DFP.2.3.272/atdf/AVR32DD28.atdf')
     atdf = Dfpack.Atdf(atdf_path)
 
     for device in atdf.devices:
@@ -120,13 +127,13 @@ if __name__ == '__main__':
         text2 = variant.package
     )
 
-    package_data = DxPackageData(variant.package, pinmap.spacing, appdata)
-    package_shape = package_data.shape
-    package = Overview.Package(package_shape, package_data)
+    package = DxPackage(variant.package, appdata)
 
     layout = 'orthogonal'
+    layout = 'horizontal'
+    layout = 'diagonal'
     pinout = Overview.Pinout(layout, pinmap, package)
-    dw_page.append(pinout(x=0, y=-200))
+    dw_page.append(pinout.place(x=0, y=-0))
 
     legend = Overview.Legend(pinmap)
     dw_page.append(legend(x=pinout.x+500, y=pinout.y+500))
