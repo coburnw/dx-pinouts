@@ -86,6 +86,10 @@ class DxFunction(FunctionLabel):
     # the Function base class can make use of.
     type_index = sort_index
 
+    def __init__(self):
+        super().__init__()
+        return
+
     @property
     def text(self):
         # the text to be displayed inside a function label
@@ -116,7 +120,7 @@ class DxSignalFunction(DxFunction):
         super().__init__()
 
         self.signal = signal
-        self.width = 100
+        self.width = 70
 
         return
 
