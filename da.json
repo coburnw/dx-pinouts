@@ -9,6 +9,7 @@
 		"footer":{"title":"",
 			"subtitle":"put-put"
 		},
+		"footnotes": {"_dual": "Supports both TWI Host and Slave mode"},
 		"notes":[
 			["$legend"],
 			[ "Differential ADC (analogReadDiff()) can only use pins on PORTD and PORTE (if present) as the negative input.",
