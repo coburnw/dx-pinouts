@@ -16,6 +16,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import os
+import copy
 import json
 
 import microchip_dfp as Dfpack
@@ -30,9 +31,6 @@ class DxPackage(Overview.Package):
         """
 
         Args:
-            variant_package:
-
-        Returns:
             package_name (str): Name of the variant package such as 'tqfp32', 'vqfn44', 'soic16'
             appdata (dict): dictionary of user data to include in package
         """
@@ -99,10 +97,14 @@ class DxPinmap(Overview.Pinmap):
 
 
 class DxPage(Page):
-    def __init__(self, family_config, variant_name):
-        self.page_config = family_config['page']
-        self.variant_config = family_config[variant_name]
-        self.variant_name = variant_name
+    def __init__(self, page_config, variant_config):
+        self.page_config = page_config
+        self.variant_config = variant_config
+
+        if 'notes' in self.variant_config:
+            for i, note in enumerate(self.variant_config['notes']):
+                if len(note) > 0:
+                    self.page_config['notes'][i] = self.variant_config['notes'][i]
 
         atdf = self.load_atdf(self.variant_config)
         pinmap = self.build_pinmap(atdf)
@@ -122,7 +124,7 @@ class DxPage(Page):
 
     def save(self, filepath=None):
         if filepath is None:
-            filepath = self.variant_name
+            filepath = self.variant_config['part_family']
 
         super().save(filepath)
         return
@@ -155,31 +157,36 @@ class DxPage(Page):
 
 class Pages:
     def __init__(self, config_name):
-        self.family_config = self.load(config_name)
+        self.config = self.load(config_name)
         return
 
     @property
     def page_config(self):
-        return self.family_config['page']
+        return self.config['page']
 
     def __iter__(self):
-        for key in self.family_config:
+        for key in self.config:
             if key.lower() == 'page':
                 continue
 
-            yield DxPage(self.family_config, key)
+            page_config = copy.deepcopy(self.page_config)
+            variant_config = self.config[key]
+
+            yield DxPage(page_config, variant_config)
+
+        return
 
     def load(self, name):
         basename = os.path.basename(name)
         name, suffix = os.path.splitext(basename)
 
         path = '{}.json'.format(name)
-        print('loading config file: {}'.format(path))
+        print('loading family config file: {}'.format(path))
 
         with open(path, 'r') as fp:
-            family = json.load(fp)
+            config = json.load(fp)
 
-        return family
+        return config
 
 
 if __name__ == '__main__':

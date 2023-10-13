@@ -1328,9 +1328,10 @@
 <text x="0" y="100.0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">Errata/Clarif: TCD and TCA do NOT override port direction (TCB still does) </tspan></text>
 </g>
 <g id="d276">
-<text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">Errata: TCD does not function on any pins other than the default mux option </tspan><tspan x="0" dy="1em">in currently available silicon. </tspan></text>
-<text x="0" y="62.5" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">USART0 defaults to PA0/PA1 - unless the system clock source is CLKIN. In </tspan><tspan x="0" dy="1em">that case, since that takes PA0, we default to PA4/5 instead. </tspan></text>
-<text x="0" y="125.0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">All other peripherals are left at their default mux options unless specified </tspan><tspan x="0" dy="1em">otherwise. </tspan></text>
+<text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">1. Both VDD and VDDA are internally connected. Each power pin must be </tspan><tspan x="0" dy="1em">connected to its respective rail and decoupled with 0.1uF capacitors </tspan></text>
+<text x="0" y="62.5" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">2. USART0 is re-assigned to PA4/PA5 when CLKIN enabled </tspan></text>
+<text x="0" y="100.0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">3.  </tspan></text>
+<text x="0" y="137.5" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">S. TWI function with server capability only </tspan></text>
 </g>
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d277">Touch</text>
 <g id="d278">
