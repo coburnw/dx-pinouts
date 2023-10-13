@@ -1,3 +1,20 @@
+# text.py - text and font related utilities.
+#
+# Copyright (c) 2023 Coburn Wightman
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import requests
 from io import BytesIO
 from PIL import ImageFont
@@ -6,80 +23,61 @@ import drawsvg as dw
 import pinoutOverview as Overview
 
 
-class FontCache():
-    _font_face = None  # a css font-face string with url to font data
-    _font_data = None  # a BytesIO data stream of cached font data
+class GoogleFontCache():
+    __font_cache = dict()
 
-    def __init__(self, style):
-        self.style = style
+    def __init__(self, font_style=None):
+        self._font_style = font_style
+        self._font = None
 
-        font_face = self.get_font_face()
-        if font_face is None:
-            font_face = self.get_google_font_face(self.style['font_family'])
-            self.set_font_face(font_face)
+        if self._font_style is not None:
+            font_name = self._font_style['font_family']
+            try:
+                self._font = self._font_cache[font_name]
+            except KeyError:
+                font_face = self._download_google_font_face(font_name)
+                font_data = self._download_google_font_data(font_face)
+                font = dict(face=font_face, data=font_data)
 
-        font_data = self.get_font_data()
-        if font_data is None:
-            font_data = self.get_google_font_data(font_face)
-            self.set_font_data(font_data)
+                self._font_cache[font_name] = font
+                self._font = font
 
-        self._font_size = self.style['font_size']
-        self._font = ImageFont.truetype(font_data, self.font_size)
+        return
+
+    def __iter__(self):
+        font_style = dict()
+        for font_name in self._get_font_cache():
+            font_style['font_family'] = font_name
+            yield GoogleFont(font_style)
 
         return
 
     @property
-    def font(self):
-        return self._font
+    def font_face(self):
+        return self._font['face']
 
     @property
-    def css_font(self):
-        font_face = self.get_font_face()
-        prefix, url_open, suffix = font_face.partition('url(')
-        junk, url_close, suffix = suffix.partition(')')
-
-        bin_font_data = self.get_font_data().getvalue()
-        mime = 'application/octet-stream'
-        font_data = dw.url_encode.bytes_as_data_uri(bin_font_data, strip_chars='', mime=mime)
-
-        loaded = prefix + url_open + font_data + url_close + suffix
-
-        return loaded
+    def font_data(self):
+        return self._font['data']
 
     @property
-    def font_size(self):
-        return self._font_size
+    def _font_cache(self):
+        return self._get_font_cache()
 
     @classmethod
-    def set_font_face(cls, font_face):
-        cls._font_face = font_face
-        return
+    def _get_font_cache(cls):
+        return cls.__font_cache
 
-    @classmethod
-    def get_font_face(cls, loaded=False):
-        return cls._font_face
-
-    @classmethod
-    def set_font_data(cls, font_data):
-        cls._font_data = font_data
-        return cls._font_data
-
-    @classmethod
-    def get_font_data(cls):
-        try:
-            cls._font_data.seek(0)
-            return cls._font_data
-        except:
-            return None
-
-    def get_google_font_face(self, family_name, kwargs=dict()):
+    def _download_google_font_face(self, family_name):  # , kwargs=dict()
         google_url = "https://fonts.googleapis.com/css2"
-        kwargs.update(dict(family=family_name))
+        # kwargs.update(dict(family=family_name))
+        kwargs = dict(family=family_name)
         req = requests.get(google_url, params=kwargs)
-        print('downloaded {}'.format(req.url))
+
+        print('downloading {}'.format(req.url))
         return req.text
 
-    def get_google_font_data(self, font_face):
+    def _download_google_font_data(self, font_face):
         text = font_face
         start = text.rfind('url(')
         line = text[start + 4:]
@@ -87,10 +85,59 @@ class FontCache():
         font_url = line[:end]
 
         req = requests.get(font_url)
-        print('downloaded {}'.format(req.url))
-        font_data = BytesIO(req.content)
+        font_data = req.content
 
+        #print('downloaded {}'.format(req.url))
         return font_data
+
+
+class GoogleFont():
+    def __init__(self, font_style):
+        """
+
+        Args:
+            font_style (dict): font style including font_family attribute.
+        """
+        self.style = font_style
+        self._cache = GoogleFontCache(font_style)
+
+        self._font_data_stream = None
+        return
+
+    @property
+    def font_size(self):
+        return self.style['font_size']
+
+    @property
+    def font_face(self):
+        return self._cache.font_face
+
+    @property
+    def font_data(self):
+        return self._cache.font_data
+
+    @property
+    def font_data_stream(self):
+        if self._font_data_stream is None:
+            self._font_data_stream = BytesIO(self.font_data)
+
+        self._font_data_stream.seek(0)
+        return self._font_data_stream
+
+    @property
+    def image_font(self):
+        return ImageFont.truetype(self.font_data_stream, self.font_size)
+
+    @property
+    def css_font(self):
+        prefix, url_open, suffix = self.font_face.partition('url(')
+        junk, url_close, suffix = suffix.partition(')')
+
+        mime = 'application/octet-stream'
+        encoded_data = dw.url_encode.bytes_as_data_uri(self.font_data, strip_chars='', mime=mime)
+        loaded = prefix + url_open + encoded_data + url_close + suffix
+
+        return loaded
 
 
 class Text:
@@ -110,6 +157,7 @@ class Text:
             font_family='Roboto Mono'
         )
 
+        self.font = None
         return
 
     @property
@@ -118,14 +166,23 @@ class Text:
 
     @property
     def width(self):
-        # a simplistic to the point of being bogus value
-        return self.style['font_size'] + len(self.value)
+        if self.font is not None:
+            # use ImageFont length calculation for 'high precision'
+            length = self.font.image_font.getlength(self.value)
+        else:
+            # else return a rough approximation
+            length = self.style['font_size'] * len(self.value)
+
+        return length
 
     @property
     def height(self):
+        # hmm. a text can have newlines, right?
         return self.line_spacing
 
     def generate(self, x=0, y=0):
+        self.font = GoogleFont(self.style)
+
         text = self.value
         if self.disabled:
             text = ''
@@ -158,13 +215,12 @@ class TextBlock(Overview.Region):
             font_family='Roboto Mono'
         )
 
-        # print(self.text.style['font_family'], self.text.style['font_size'], width, height)
-
+        self.cache = None
         return
 
     @property
     def font(self):
-        return self.cache.font
+        return self.cache.image_font
 
     @property
     def font_size(self):
@@ -194,7 +250,7 @@ class TextBlock(Overview.Region):
 
     def generate(self, width):
         self.width = width
-        self.cache = FontCache(self.style)
+        self.cache = GoogleFont(self.style)
 
         style = dict(self.style)
         if 'font_size' in style:

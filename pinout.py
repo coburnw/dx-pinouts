@@ -1,6 +1,22 @@
+# pinout.py - Application. reads a json config file of variants and builds an SVG visual datasheet.
+#
+# Copyright (c) 2023 Coburn Wightman
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import os
 import json
-#import drawsvg as dw
 
 import microchip_dfp as Dfpack
 import pinoutOverview as Overview
@@ -147,7 +163,7 @@ class Pages:
         return self.family_config['page']
 
     def __iter__(self):
-        for key, config_item in self.family_config.items():
+        for key in self.family_config:
             if key.lower() == 'page':
                 continue
 
@@ -167,7 +183,6 @@ class Pages:
 
 
 if __name__ == '__main__':
-    #config = load('da.json')
     fname = 'da.json'
 
     pages = Pages(fname)

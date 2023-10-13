@@ -1,0 +1,75 @@
+{
+	"page":{
+		"atdf_home": "~/dev/svg/avr-atpack/Microchip.AVR-Dx_DFP.2.3.272/atdf",
+		"width": 2000,
+		"height": 1500,
+		"header":{"title":"Microchip DA Series",
+			"subtitle":"The Economy Ride"
+		},
+		"footer":{"title":"",
+			"subtitle":"put-put"
+		},
+		"notes":[
+			["$legend"],
+			[ "Differential ADC (analogReadDiff()) can only use pins on PORTD and PORTE (if present) as the negative input.",
+				"Only pins 2 and 6 on any given port are able to wake the chip from standby or power down sleep modes from a pin interrupt on the 'rising' or 'falling' edge.",
+				"DxCore's PWM system is *PORTMUX aware* for TCA" ],
+			[ "TCA must be moved as a group, not as individual pins",
+				"DxCore only supports PWM on one of the two TCB options, depending on pincount.",
+				"Errata/Clarif: TCD and TCA do NOT override port direction (TCB still does)" ],
+			[ "Errata: TCD does not function on any pins other than the default mux option in currently available silicon.",
+				"USART0 defaults to PA0/PA1 - unless the system clock source is CLKIN. In that case, since that takes PA0, we default to PA4/5 instead.",
+				"All other peripherals are left at their default mux options unless specified otherwise." ]
+		]
+	},
+	"DA28":{
+		"atdf_name": "AVR32DA28.atdf",
+		"layout":"horizontal",
+		"package":"SOIC-28",
+		"package_range":["SOIC-28","SSOP-28","DIP-28"],
+		"part_family":"DA28",
+		"part_range":["AVR128DA28","AVR64DA28","AVR32DA28"],
+		"notes": ["","","",
+			["1. Both VDD and VDDA are internally connected. Each power pin must be connected to its respective rail and decoupled with 0.1uF capacitors",
+				"2. USART0 is re-assigned to PA4/PA5 when CLKIN enabled",
+				"3. ",
+				"S. TWI function with server capability only"]
+		],
+		"default_mux":{"TCA0":"TCA_D", "USART0":"SPECIAL"}
+	},
+	"DA32":{
+		"atdf_name": "AVR32DA32.atdf",
+		"layout": "diagonal",
+		"package":"VQFN-32",
+		"package_range":["TQFP", "VQFN"],
+		"part_family":"DA32",
+		"part_range":["AVR128DA32","AVR64DA32","AVR32DA32"],
+		"notes": ["","","",""],
+		"default_mux":{"TCA0":"TCA_D", "USART0":"SPECIAL"}
+	},
+	"DA48":{
+		"atdf_name": "AVR32DA48.atdf",
+		"layout": "orthogonal",
+		"package":"TQFP-48",
+		"package_range":["TQFP", "VQFN"],
+		"part_family":"DA48",
+		"part_range":["AVR128DA48","AVR64DA48","AVR32DA48"],
+		"default_mux":{"TCA0":"TCA_C", "USART0":"SPECIAL"}
+	},
+	"DA64":{
+		"atdf_name": "AVR64DA64.atdf",
+		"layout": "orthogonal",
+		"package":"VQFN-64",
+		"package_range":["TQFP", "VQFN"],
+		"part_family":"DA64",
+		"part_range":["AVR128DA64","AVR64DA64","AVR32DA64"],
+		"notes": [
+			[],
+			[],
+			[],
+			["#Errata: TCA1 does not function on PE or PG in currently available silicon on the AVR128DA64. It is available in the AVR64DA64",
+				"#Errata: EVSYS is not connected to PB6-7 or PE4-7 on the AVR128DA64"]
+		],
+		"default_mux":{"TCA0":"TCA_C", "USART0":"SPECIAL"}
+	}
+}

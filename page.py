@@ -1,17 +1,25 @@
-import math
+# page.py - page and page components. Defines the page and overarching look of a pinout diagram.
+#
+# Copyright (c) 2023 Coburn Wightman
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import os
 
 import drawsvg as dw
 import pinoutOverview as Overview
-from text import Text, TextBlock, FontCache
-
-
-# class Margin(Overview.Region):
-#     def __init__(self, location):
-#         self.location = location  # left, right, top, or bottom
-#         self.context = 'outside'  # inside or outside
-#         self.items = []
-#         return
+from text import Text, TextBlock, GoogleFontCache
 
 
 class Border(Overview.Region):
@@ -86,8 +94,6 @@ class Note(TextBlock):
 
 class Page():
     def __init__(self, page_config, pinout, legend):
-        #self.page_config = page_config
-
         self.canvas_height = page_config.get('height', 1000)
         self.canvas_width = page_config.get('width', 1000)
 
@@ -106,13 +112,10 @@ class Page():
         #   we move zero zero to center of page
         self.dw_page = dw.Drawing(self.canvas_width, self.canvas_height, origin='center')
 
-        self.dw_page.embed_google_font('Roboto Mono')
-        # self.dw_page.embed_google_font('Roboto')
-
         return
 
     @property
-    def leftward(self):  # leftward?
+    def leftward(self):
         # svg coordinates: +x to the right, +y to the bottom
         return -1
 
@@ -179,15 +182,16 @@ class Page():
         return
 
     def embed_fonts(self):
-        style = dict()
-        style['font_size'] = 25
-        style['text_anchor'] = 'start'
-        style['dominant_baseline'] = 'middle'
-        style['font_weight'] = ''
-        style['font_family'] = 'Roboto'
+        # style = dict()
+        # style['font_size'] = 25
+        # style['text_anchor'] = 'start'
+        # style['dominant_baseline'] = 'middle'
+        # style['font_weight'] = ''
+        # style['font_family'] = 'Roboto'
 
-        cache = FontCache(style)
-        self.dw_page.append_css(cache.css_font)
+        cache = GoogleFontCache()
+        for font in cache:
+            self.dw_page.append_css(font.css_font)
 
         return
 
