@@ -7,6 +7,7 @@ from v_palette import get_colors
 
 palette = 'flat'
 
+
 class SignalFunctionFactory():
     def __new__(cls, signal):
         # get function type and peripheral index
@@ -88,6 +89,7 @@ class DxFunction(FunctionLabel):
 
     def __init__(self):
         super().__init__()
+        self._footnotes = []
         return
 
     @property
@@ -114,15 +116,36 @@ class DxFunction(FunctionLabel):
 
         return name, instance, alt_pos
 
+    @property
+    def footnote(self):
+        if len(self._footnotes) > 0:
+            return self._footnotes[0] # self.function.get('footnote', None)
+
+        return None
+
+
 
 class DxSignalFunction(DxFunction):
     def __init__(self, signal):
         super().__init__()
 
         self.signal = signal
+        self.raw_value = self.signal.function
+
         self.width = 70
 
         return
+
+    @property
+    def name(self):
+        """
+        The name of the signal function
+
+        Returns:
+            name (str): the function name
+        """
+        name, instance, alt_pos = self.parse_function(self.raw_value)
+        return name
 
     @property
     def text(self):
@@ -134,14 +157,9 @@ class DxSignalFunction(DxFunction):
         if self.alt_position > 0:
             alt = '/{}'.format(self.alt_position)
 
-        text = '{}{}{}'.format(self.signal.group, inst, alt)
+        text = '{}{}{}'.format(self.name, inst, alt)
 
         return text
-
-    @property
-    def name(self):
-        name, instance, alt_pos = self.parse_function(self.signal.function)
-        return name
 
     @property
     def instance(self):
@@ -159,12 +177,22 @@ class DxSignalFunction(DxFunction):
         return int(alt_pos)
 
     @property
-    def footnote(self):
-        return None  # self.function.get('footnote', None)
-
-    @property
     def pad_name(self):
         return self.signal.pad  # [1]
+
+    @property
+    def footnotes(self):
+        return self._footnotes
+
+    @footnotes.setter
+    def footnotes(self, footnotes):
+        for footnote in footnotes:
+            if footnote.selector.lower() == 'function' and footnote.key in self.signal.function:
+                self._footnotes.append(footnote.id)
+            if footnote.selector.lower() == 'group' and footnote.key in self.signal.group:
+                self._footnotes.append(footnote.id)
+
+        return
 
 
 class DxPinFunction(DxFunction):
@@ -445,7 +473,7 @@ class SyncSerialSignalFunction(DxSignalFunction):
         super().__init__(signal)
 
         self.title = 'SPI/TWI'
-        self.description = 'Syncronous Serial Interface'
+        self.description = 'Synchronous Serial Interface'
 
         self.box_style['stroke'] = get_colors(('blue', 800), palette=palette)
         self.box_style['fill'] = get_colors(('blue', 400), palette=palette)
@@ -454,6 +482,11 @@ class SyncSerialSignalFunction(DxSignalFunction):
         self.text_style['fill'] = get_colors(('black', 500), palette=palette)
 
         return
+
+    @property
+    def text(self):
+        text = super().text.replace('_DUAL', '')
+        return text
 
 sort_index += 1
 class I2CSignalFunction(DxSignalFunction):
@@ -584,6 +617,7 @@ class SystemSignalFunction(DxSignalFunction):
     
     def __init__(self, signal):
         super().__init__(signal)
+        self.raw_value = signal.group
 
         self.title = 'System'
         self.description = 'System'

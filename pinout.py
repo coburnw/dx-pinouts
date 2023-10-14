@@ -23,7 +23,8 @@ import microchip_dfp as Dfpack
 import pinoutOverview as Overview
 
 from page import Page
-import dx_functions
+from dx_functions import PinFunctionFactory, SignalFunctionFactory
+from notes import Footnotes
 
 
 class DxPackage(Overview.Package):
@@ -68,7 +69,7 @@ class DxPinmap(Overview.Pinmap):
         for mapping in pinmap:
             self.reverse_map[mapping.pad] = int(mapping.position)
 
-            function_label = dx_functions.PinFunctionFactory(mapping.pad)
+            function_label = PinFunctionFactory(mapping.pad)
             pad = Overview.Pad(function_label)
             self.data[int(mapping.position)] = pad
 
@@ -80,9 +81,12 @@ class DxPinmap(Overview.Pinmap):
     def get_pad_by_position(self, index):
         return self.data[int(index)]
 
-    def append_module(self, module):
+    def append_module(self, module, footnotes):
         """
-        :param module: atdf module object
+
+        Args:
+            module:
+            footnotes (list): A list of all possible footnotes
         """
 
         for name, instance in module.instances.items():
@@ -90,7 +94,9 @@ class DxPinmap(Overview.Pinmap):
                 continue
 
             for signal in instance.signals:
-                function = dx_functions.SignalFunctionFactory(signal=signal)
+                function = SignalFunctionFactory(signal=signal)
+                function.footnotes = footnotes
+
                 self.get_pad_by_name(signal.pad).append(function)
 
         return
@@ -104,10 +110,17 @@ class DxPage(Page):
         if 'notes' in self.variant_config:
             for i, note in enumerate(self.variant_config['notes']):
                 if len(note) > 0:
-                    self.page_config['notes'][i] = self.variant_config['notes'][i]
+                    self.page_config['notes'][i] = note
+
+        footnotes = Footnotes()
+        if 'footnotes' in self.page_config:
+            footnotes.append(self.page_config['footnotes'])
+
+        if 'footnotes' in self.variant_config:
+            footnotes.append(self.variant_config['footnotes'])
 
         atdf = self.load_atdf(self.variant_config)
-        pinmap = self.build_pinmap(atdf)
+        pinmap = self.build_pinmap(atdf, footnotes)
 
         appdata = dict(
             text1=self.variant_config['part_range'],
@@ -119,15 +132,16 @@ class DxPage(Page):
         pinout = Overview.Pinout(layout, pinmap, package)
         legend = Overview.Legend(pinmap)
 
-        super().__init__(self.page_config, pinout, legend)
+        super().__init__(self.page_config, pinout, legend, footnotes)
         return
 
     def save(self, filepath=None):
         if filepath is None:
             filepath = self.variant_config['part_family']
 
-        super().save(filepath)
-        return
+        filepath = super().save(filepath)
+
+        return filepath
 
     def load_atdf(self, variant_config):
         atdf_home = os.path.expanduser(self.page_config['atdf_home'])
@@ -138,7 +152,7 @@ class DxPage(Page):
 
         return atdf
 
-    def build_pinmap(self, atdf):
+    def build_pinmap(self, atdf, footnotes):
         variant = atdf.variants[0]
 
         map = atdf.pinouts[variant.pinout]
@@ -146,7 +160,8 @@ class DxPage(Page):
 
         device = atdf.devices[0]
         for module in device.peripherals:
-            pinmap.append_module(module)
+            pinmap.append_module(module, footnotes)
+
 
         pinmap.sort()
         # split_functions = Overview.Functions()
@@ -190,11 +205,12 @@ class Pages:
 
 
 if __name__ == '__main__':
-    fname = 'da.json'
+    config_name = 'da.json'
 
-    pages = Pages(fname)
+    pages = Pages(config_name)
     for page in pages:
-        page.save()
+        filepath = page.save()
+        print('Saved to {}'.format(filepath))
 
     exit()
 

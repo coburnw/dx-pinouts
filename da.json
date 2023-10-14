@@ -9,7 +9,7 @@
 		"footer":{"title":"",
 			"subtitle":"put-put"
 		},
-		"footnotes": {"_dual": "Supports both TWI Host and Slave mode"},
+		"footnotes": [{"selector":"group", "key": "_DUAL", "text": "Supports both TWI Host and Slave mode"}],
 		"notes":[
 			["$legend"],
 			[ "Differential ADC (analogReadDiff()) can only use pins on PORTD and PORTE (if present) as the negative input.",
@@ -17,10 +17,10 @@
 				"DxCore's PWM system is *PORTMUX aware* for TCA" ],
 			[ "TCA must be moved as a group, not as individual pins",
 				"DxCore only supports PWM on one of the two TCB options, depending on pincount.",
-				"Errata/Clarif: TCD and TCA do NOT override port direction (TCB still does)" ],
-			[ "Errata: TCD does not function on any pins other than the default mux option in currently available silicon.",
-				"USART0 defaults to PA0/PA1 - unless the system clock source is CLKIN. In that case, since that takes PA0, we default to PA4/5 instead.",
-				"All other peripherals are left at their default mux options unless specified otherwise." ]
+				"Errata/Clarif: TCD and TCA do NOT override port direction (TCB still does)",
+				"Errata: TCD does not function on any pins other than the default mux option in currently available silicon.",
+				"All other peripherals are left at their default mux options unless specified otherwise." ],
+			["$footnotes"]
 		]
 	},
 	"DA28":{
@@ -30,12 +30,8 @@
 		"package_range":["SOIC-28","SSOP-28","DIP-28"],
 		"part_family":"DA28",
 		"part_range":["AVR128DA28","AVR64DA28","AVR32DA28"],
-		"notes": ["","","",
-			["1. Both VDD and VDDA are internally connected. Each power pin must be connected to its respective rail and decoupled with 0.1uF capacitors",
-				"2. USART0 is re-assigned to PA4/PA5 when CLKIN enabled",
-				"3. ",
-				"S. TWI function with server capability only"]
-		],
+		"notes": ["","","",""],
+		"footnotes": [{"selector":"group", "key": "EXTCLK", "text": "USART0 is re-assigned to PA4/PA5 when EXTCLK enabled"}],
 		"default_mux":{"TCA0":"TCA_D", "USART0":"SPECIAL"}
 	},
 	"DA32":{

@@ -19,7 +19,8 @@ import os
 
 import drawsvg as dw
 import pinoutOverview as Overview
-from text import Text, TextBlock, GoogleFontCache
+from text import Text, GoogleFontCache
+from notes import Note, Footnotes
 
 
 class Border(Overview.Region):
@@ -77,23 +78,9 @@ class Header(Overview.Region):
         return self
 
 
-class Note(TextBlock):
-    def __init__(self, text):
-        super().__init__(text)
-        self.style['font_size'] = 25
-        self.style['text_anchor'] = 'start'
-        self.style['dominant_baseline'] = 'middle'
-        self.style['font_weight'] = ''
-        self.style['font_family'] = 'Roboto'
-        return
-
-    @property
-    def margin(self):
-        return self.style['font_size'] * 3
-
 
 class Page():
-    def __init__(self, page_config, pinout, legend):
+    def __init__(self, page_config, pinout, legend, footnotes):
         self.canvas_height = page_config.get('height', 1000)
         self.canvas_width = page_config.get('width', 1000)
 
@@ -103,13 +90,11 @@ class Page():
 
         self.pinout = pinout
         self.legend = legend
+        self.footnotes = footnotes
 
         self.package_x_offset = 0
         self.package_y_offset = 0
 
-        # start with a page
-        #   drawsvg's original coordinates are top left corner.
-        #   we move zero zero to center of page
         self.dw_page = dw.Drawing(self.canvas_width, self.canvas_height, origin='center')
 
         return
@@ -132,8 +117,6 @@ class Page():
         return 1
 
     def generate(self):
-        print(self.canvas_width, "  ", self.canvas_height)
-
         # add a Border
         border = Border(self.canvas_width, self.canvas_height)
         self.dw_page.append(border.place(0, 0))
@@ -154,7 +137,11 @@ class Page():
         # attach notes
         index = 0
         for string in self.notes:
-            note = Note(string)
+            if '$footnotes' in string:
+                note = self.footnotes
+            else:
+                note = Note(string)
+
             if index in [0, 2]:
                 x = border.left - note.margin * self.leftward
                 width = x - (self.pinout.width / 2 + note.margin) * self.leftward
@@ -182,14 +169,8 @@ class Page():
         return
 
     def embed_fonts(self):
-        # style = dict()
-        # style['font_size'] = 25
-        # style['text_anchor'] = 'start'
-        # style['dominant_baseline'] = 'middle'
-        # style['font_weight'] = ''
-        # style['font_family'] = 'Roboto'
-
         cache = GoogleFontCache()
+
         for font in cache:
             self.dw_page.append_css(font.css_font)
 
@@ -203,4 +184,6 @@ class Page():
         name = '{}.svg'.format(name)
 
         self.dw_page.save_svg(name)
+
+        return name
 
