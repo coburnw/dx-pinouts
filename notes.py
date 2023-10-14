@@ -23,11 +23,14 @@ class Note(TextBlock):
 
 
 class Footnote():
-    _next_id = 0
+    _last_id = 0
 
     def __init__(self, footnote):
         self._id = 0
         self._footnote = footnote
+
+        if self.type =='constant':
+            id = self.id
 
         return
 
@@ -43,8 +46,8 @@ class Footnote():
         return self._id
 
     @property
-    def selector(self):
-        return self._footnote['selector']
+    def type(self):
+        return self._footnote['type']
 
     @property
     def key(self):
@@ -56,13 +59,16 @@ class Footnote():
 
     @classmethod
     def next_id(cls):
-        cls._next_id += 1
-        return cls._next_id
+        cls._last_id += 1
+        return cls._last_id
 
 
 class Footnotes(Note):
-    def __init__(self, footnotes=None):
+    def __init__(self, footnotes=None, reset=False):
         super().__init__('')
+
+        if reset:
+            Footnote._last_id = 0
 
         self.footnotes = []
         if footnotes is not None:

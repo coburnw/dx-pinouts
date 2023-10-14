@@ -187,10 +187,12 @@ class DxSignalFunction(DxFunction):
     @footnotes.setter
     def footnotes(self, footnotes):
         for footnote in footnotes:
-            if footnote.selector.lower() == 'function' and footnote.key in self.signal.function:
+            if footnote.type.lower() == 'function' and footnote.key in self.signal.function:
                 self._footnotes.append(footnote.id)
-            if footnote.selector.lower() == 'group' and footnote.key in self.signal.group:
+                print('  Function footnote found', self.signal.function)
+            if footnote.type.lower() == 'group' and footnote.key in self.signal.group:
                 self._footnotes.append(footnote.id)
+                print('  Group footnote found', self.signal.group)
 
         return
 

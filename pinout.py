@@ -112,7 +112,7 @@ class DxPage(Page):
                 if len(note) > 0:
                     self.page_config['notes'][i] = note
 
-        footnotes = Footnotes()
+        footnotes = Footnotes(reset=True)
         if 'footnotes' in self.page_config:
             footnotes.append(self.page_config['footnotes'])
 

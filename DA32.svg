@@ -1405,119 +1405,124 @@
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">USART</text>
 </g>
 <g id="d300">
-<rect x="-35.0" y="-10.0" width="70" height="20" fill="#FFE97C" stroke="#CCAA00" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="middle" font-weight="bold">EXTCLK</text>
+<circle cx="0" cy="0" r="9.0" stroke="black" fill="white" />
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="blue" stroke="black" dominant-baseline="middle" text-anchor="middle" font-weight="bold">2</text>
 </g>
 <g id="d301">
+<rect x="-35.0" y="-10.0" width="70" height="20" fill="#FFE97C" stroke="#CCAA00" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
+<use xlink:href="#d300" x="25.0" y="0" />
+<text x="-10.0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="middle" font-weight="bold">EXTCLK</text>
+</g>
+<g id="d302">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">TCA.WO</text>
 </g>
-<g id="d302">
+<g id="d303">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#2471A3" stroke="#1F618D" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">LUT0.IN0</text>
 </g>
-<g id="d303">
+<g id="d304">
 <path d="M0,0 L400,0" stroke="black" stroke-width="2" fill="none" />
 <g>
 <use xlink:href="#d298" x="45.0" y="0" />
 <use xlink:href="#d299" x="125.0" y="0" />
-<use xlink:href="#d300" x="205.0" y="0" />
-<use xlink:href="#d301" x="285.0" y="0" />
-<use xlink:href="#d302" x="365.0" y="0" />
+<use xlink:href="#d301" x="205.0" y="0" />
+<use xlink:href="#d302" x="285.0" y="0" />
+<use xlink:href="#d303" x="365.0" y="0" />
 </g>
-</g>
-<g id="d304">
-<use xlink:href="#d297" x="35.0" y="0" />
-<path d="M70,0 L80,0" stroke="black" stroke-width="2" fill="none" />
-<use xlink:href="#d303" x="80" y="0" />
 </g>
 <g id="d305">
+<use xlink:href="#d297" x="35.0" y="0" />
+<path d="M70,0 L80,0" stroke="black" stroke-width="2" fill="none" />
+<use xlink:href="#d304" x="80" y="0" />
+</g>
+<g id="d306">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#388E3C" stroke="#1B5E20" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">PA1</text>
 </g>
-<g id="d306">
+<g id="d307">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#A1887F" stroke="#5D4037" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">XY.1</text>
 </g>
-<g id="d307">
+<g id="d308">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#42A5F5" stroke="#1565C0" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">USART</text>
 </g>
-<g id="d308">
+<g id="d309">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">TCA.WO</text>
 </g>
-<g id="d309">
+<g id="d310">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#2471A3" stroke="#1F618D" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">LUT0.IN1</text>
 </g>
-<g id="d310">
+<g id="d311">
 <path d="M0,0 L320,0" stroke="black" stroke-width="2" fill="none" />
 <g>
-<use xlink:href="#d306" x="45.0" y="0" />
-<use xlink:href="#d307" x="125.0" y="0" />
-<use xlink:href="#d308" x="205.0" y="0" />
-<use xlink:href="#d309" x="285.0" y="0" />
+<use xlink:href="#d307" x="45.0" y="0" />
+<use xlink:href="#d308" x="125.0" y="0" />
+<use xlink:href="#d309" x="205.0" y="0" />
+<use xlink:href="#d310" x="285.0" y="0" />
 </g>
-</g>
-<g id="d311">
-<use xlink:href="#d305" x="35.0" y="0" />
-<path d="M70,0 L80,0" stroke="black" stroke-width="2" fill="none" />
-<use xlink:href="#d310" x="80" y="0" />
 </g>
 <g id="d312">
+<use xlink:href="#d306" x="35.0" y="0" />
+<path d="M70,0 L80,0" stroke="black" stroke-width="2" fill="none" />
+<use xlink:href="#d311" x="80" y="0" />
+</g>
+<g id="d313">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#388E3C" stroke="#1B5E20" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">PA2</text>
 </g>
-<g id="d313">
+<g id="d314">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#A1887F" stroke="#5D4037" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">XY.2</text>
 </g>
-<g id="d314">
+<g id="d315">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#42A5F5" stroke="#1565C0" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">USART</text>
 </g>
-<g id="d315">
+<g id="d316">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#42A5F5" stroke="#1565C0" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#000000" stroke="#000000" dominant-baseline="middle" text-anchor="middle" font-weight="bold">I2C</text>
 </g>
-<g id="d316">
+<g id="d317">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#42A5F5" stroke="#1565C0" stroke-width="2" stroke-dasharray="3 4" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="-2.0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#000000" stroke="#000000" dominant-baseline="middle" text-anchor="middle" font-weight="normal" font-style="italic">I2C/1</text>
 </g>
-<g id="d317">
+<g id="d318">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">TCA.WO</text>
 </g>
-<g id="d318">
+<g id="d319">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">TCB.WO</text>
 </g>
-<g id="d319">
+<g id="d320">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#2471A3" stroke="#1F618D" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">LUT0.IN2</text>
 </g>
-<g id="d320">
+<g id="d321">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#2471A3" stroke="#1F618D" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(10.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">EV.OUT0</text>
 </g>
-<g id="d321">
+<g id="d322">
 <path d="M0,0 L640,0" stroke="black" stroke-width="2" fill="none" />
 <g>
-<use xlink:href="#d313" x="45.0" y="0" />
-<use xlink:href="#d314" x="125.0" y="0" />
-<use xlink:href="#d315" x="205.0" y="0" />
-<use xlink:href="#d316" x="285.0" y="0" />
-<use xlink:href="#d317" x="365.0" y="0" />
-<use xlink:href="#d318" x="445.0" y="0" />
-<use xlink:href="#d319" x="525.0" y="0" />
-<use xlink:href="#d320" x="605.0" y="0" />
+<use xlink:href="#d314" x="45.0" y="0" />
+<use xlink:href="#d315" x="125.0" y="0" />
+<use xlink:href="#d316" x="205.0" y="0" />
+<use xlink:href="#d317" x="285.0" y="0" />
+<use xlink:href="#d318" x="365.0" y="0" />
+<use xlink:href="#d319" x="445.0" y="0" />
+<use xlink:href="#d320" x="525.0" y="0" />
+<use xlink:href="#d321" x="605.0" y="0" />
 </g>
 </g>
-<g id="d322">
-<use xlink:href="#d312" x="35.0" y="0" />
+<g id="d323">
+<use xlink:href="#d313" x="35.0" y="0" />
 <path d="M70,0 L80,0" stroke="black" stroke-width="2" fill="none" />
-<use xlink:href="#d321" x="80" y="0" />
+<use xlink:href="#d322" x="80" y="0" />
 </g>
 <g id="pins">
 <use xlink:href="#d77" x="-74.99320448690003" y="-254.9614920924334" />
@@ -1549,75 +1554,77 @@
 <use xlink:href="#d292" x="224.9705527765667" y="-104.98414380276671" />
 <use xlink:href="#d294" x="194.97508311863334" y="-134.97961346070005" />
 <use xlink:href="#d296" x="164.9796134607" y="-164.9750831186334" />
-<use xlink:href="#d304" x="134.98414380276665" y="-194.9705527765667" />
-<use xlink:href="#d311" x="104.9886741448333" y="-224.96602243450008" />
-<use xlink:href="#d322" x="74.99320448689998" y="-254.9614920924334" />
-</g>
-<g id="d323">
-<text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">$legend </tspan></text>
+<use xlink:href="#d305" x="134.98414380276665" y="-194.9705527765667" />
+<use xlink:href="#d312" x="104.9886741448333" y="-224.96602243450008" />
+<use xlink:href="#d323" x="74.99320448689998" y="-254.9614920924334" />
 </g>
 <g id="d324">
+<text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">$legend </tspan></text>
+</g>
+<g id="d325">
 <text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">Differential ADC (analogReadDiff()) can only use pins on PORTD and PORTE </tspan><tspan x="0" dy="1em">(if present) as the negative input. </tspan></text>
 <text x="0" y="62.5" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">Only pins 2 and 6 on any given port are able to wake the chip from standby </tspan><tspan x="0" dy="1em">or power down sleep modes from a pin interrupt on the 'rising' or 'falling' </tspan><tspan x="0" dy="1em">edge. </tspan></text>
 <text x="0" y="150.0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">DxCore's PWM system is *PORTMUX aware* for TCA </tspan></text>
 </g>
-<g id="d325">
+<g id="d326">
 <text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">TCA must be moved as a group, not as individual pins </tspan></text>
 <text x="0" y="37.5" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">DxCore only supports PWM on one of the two TCB options, depending on </tspan><tspan x="0" dy="1em">pincount. </tspan></text>
 <text x="0" y="100.0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">Errata/Clarif: TCD and TCA do NOT override port direction (TCB still does) </tspan></text>
 <text x="0" y="137.5" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">Errata: TCD does not function on any pins other than the default mux option </tspan><tspan x="0" dy="1em">in currently available silicon. </tspan></text>
 <text x="0" y="200.0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">All other peripherals are left at their default mux options unless specified </tspan><tspan x="0" dy="1em">otherwise. </tspan></text>
 </g>
-<g id="d326">
-<text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">3. Supports both TWI Host and Slave mode </tspan></text>
+<g id="d327">
+<text x="0" y="0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">1. Label format: NameX.Y/Z where Name is peripheral name, X is instance, Y </tspan><tspan x="0" dy="1em">is channel, and Z is alternate position. </tspan></text>
+<text x="0" y="62.5" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">2. USART0 is re-assigned to PA4/PA5 when EXTCLK enabled </tspan></text>
+<text x="0" y="100.0" font-size="25" text-anchor="start" dominant-baseline="middle" fill="black" font-weight="" font-family="Roboto"><tspan x="0" dy="0em">3. Supports both TWI Host and Slave mode </tspan></text>
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d327">Touch</text>
-<g id="d328">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d328">Touch</text>
+<g id="d329">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#A1887F" stroke="#5D4037" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">Touch</text>
-<use xlink:href="#d327" x="49.0" y="1.0" />
+<use xlink:href="#d328" x="49.0" y="1.0" />
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d329">ADC/DAC</text>
-<g id="d330">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d330">ADC/DAC</text>
+<g id="d331">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#795548" stroke="#5D4037" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">Analog</text>
-<use xlink:href="#d329" x="49.0" y="1.0" />
+<use xlink:href="#d330" x="49.0" y="1.0" />
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d331">Universal Serial Interface</text>
-<g id="d332">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d332">Universal Serial Interface</text>
+<g id="d333">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#42A5F5" stroke="#1565C0" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">USART</text>
-<use xlink:href="#d331" x="49.0" y="1.0" />
+<use xlink:href="#d332" x="49.0" y="1.0" />
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d333">Synchronous Serial Interface</text>
-<g id="d334">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d334">Synchronous Serial Interface</text>
+<g id="d335">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#42A5F5" stroke="#1565C0" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#000000" stroke="#000000" dominant-baseline="middle" text-anchor="middle" font-weight="bold">SPI/TWI</text>
-<use xlink:href="#d333" x="49.0" y="1.0" />
+<use xlink:href="#d334" x="49.0" y="1.0" />
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d335">Comparator</text>
-<g id="d336">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d336">Comparator</text>
+<g id="d337">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#A2CEFF" stroke="#0060CD" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="middle" font-weight="bold">Comparator</text>
-<use xlink:href="#d335" x="49.0" y="1.0" />
+<use xlink:href="#d336" x="49.0" y="1.0" />
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d337">System</text>
-<g id="d338">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d338">System</text>
+<g id="d339">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#FFE97C" stroke="#CCAA00" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="middle" font-weight="bold">System</text>
-<use xlink:href="#d337" x="49.0" y="1.0" />
+<use xlink:href="#d338" x="49.0" y="1.0" />
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d339">PWM</text>
-<g id="d340">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d340">PWM</text>
+<g id="d341">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#9C27B0" stroke="#7B1FA2" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">PWM</text>
-<use xlink:href="#d339" x="49.0" y="1.0" />
+<use xlink:href="#d340" x="49.0" y="1.0" />
 </g>
-<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d341">Logic System</text>
-<g id="d342">
+<text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="black" stroke="black" dominant-baseline="middle" text-anchor="start" font-weight="bold" id="d342">Logic System</text>
+<g id="d343">
 <rect x="-35.0" y="-10.0" width="70" height="20" fill="#2471A3" stroke="#1F618D" stroke-width="2" stroke-dasharray="" rx="2" ry="2" transform="skewX(-0.0)" />
 <text x="0" y="2.0" font-size="16.0" font-family="Roboto Mono" fill="#FFFFFF" stroke="#FFFFFF" dominant-baseline="middle" text-anchor="middle" font-weight="bold">LOGIC</text>
-<use xlink:href="#d341" x="49.0" y="1.0" />
+<use xlink:href="#d342" x="49.0" y="1.0" />
 </g>
 </defs>
 <g>
@@ -1636,18 +1643,18 @@
 <use xlink:href="#d67" x="0" y="0" />
 <use xlink:href="#pins" x="0" y="0" />
 </g>
-<use xlink:href="#d323" x="-925.0" y="-342.4614920924334" />
-<use xlink:href="#d324" x="75.0" y="-492.4614920924334" />
-<use xlink:href="#d325" x="-925.0" y="329.9614920924334" />
-<use xlink:href="#d326" x="75.0" y="329.9614920924334" />
+<use xlink:href="#d324" x="-925.0" y="-342.4614920924334" />
+<use xlink:href="#d325" x="75.0" y="-492.4614920924334" />
+<use xlink:href="#d326" x="-925.0" y="329.9614920924334" />
+<use xlink:href="#d327" x="75.0" y="329.9614920924334" />
 <g id="Legend">
-<use xlink:href="#d328" x="-925.0" y="-684.0" />
-<use xlink:href="#d330" x="-925.0" y="-654.0" />
-<use xlink:href="#d332" x="-925.0" y="-624.0" />
-<use xlink:href="#d334" x="-925.0" y="-594.0" />
-<use xlink:href="#d336" x="-925.0" y="-564.0" />
-<use xlink:href="#d338" x="-925.0" y="-534.0" />
-<use xlink:href="#d340" x="-925.0" y="-504.0" />
-<use xlink:href="#d342" x="-925.0" y="-474.0" />
+<use xlink:href="#d329" x="-925.0" y="-684.0" />
+<use xlink:href="#d331" x="-925.0" y="-654.0" />
+<use xlink:href="#d333" x="-925.0" y="-624.0" />
+<use xlink:href="#d335" x="-925.0" y="-594.0" />
+<use xlink:href="#d337" x="-925.0" y="-564.0" />
+<use xlink:href="#d339" x="-925.0" y="-534.0" />
+<use xlink:href="#d341" x="-925.0" y="-504.0" />
+<use xlink:href="#d343" x="-925.0" y="-474.0" />
 </g>
 </svg>
